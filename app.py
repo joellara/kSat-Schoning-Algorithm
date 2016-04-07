@@ -1,12 +1,27 @@
 import os
-from flask import Flask
+import Schoning
+from flask import *
+
+UPLOAD_FOLDER = 'static/'
+ALLOWED_EXTENSIONS = set(['txt'])
 
 app = Flask(__name__)
-@app.route('/')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+@app.route("/", methods=['GET', 'POST'])
 def index():
-    return "Hello World!"
-    
+    if request.method == 'POST':
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            linestring = file.stream.read()
+            (values, count) = Schoning.schoning_algo(linestring)
+            if not values:
+                return render_template('error.html',error=count)
+            return render_template('reading.html',values=values,count=count,string=linestring)
+    return render_template('index.html',items=os.listdir(app.config['UPLOAD_FOLDER']))
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host=os.getenv("IP", "0.0.0.0"),port=int(os.getenv("PORT", 8080)),debug=False)
