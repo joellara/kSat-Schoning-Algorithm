@@ -2,7 +2,7 @@ import os
 import Schoning
 from flask import *
 
-UPLOAD_FOLDER = 'static/'
+UPLOAD_FOLDER = '/static/'
 ALLOWED_EXTENSIONS = set(['txt'])
 
 app = Flask(__name__)
