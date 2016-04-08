@@ -24,4 +24,4 @@ def index():
             return render_template('reading.html',values=values,count=count,string=linestring)
     return render_template('index.html',items=os.listdir(app.config['UPLOAD_FOLDER']))
 if __name__ == "__main__":
-    app.run(host=os.getenv("IP", "0.0.0.0"),port=int(os.getenv("PORT", 8080)),debug=False)
+    app.run(host=os.getenv("IP", "0.0.0.0"),port=int(os.getenv("PORT", 8080)),debug=True)
