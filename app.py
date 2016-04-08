@@ -6,7 +6,6 @@ UPLOAD_FOLDER = '/static/'
 ALLOWED_EXTENSIONS = set(['txt'])
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -22,6 +21,6 @@ def index():
             if not values:
                 return render_template('error.html',error=count)
             return render_template('reading.html',values=values,count=count,string=linestring)
-    return render_template('index.html',items=os.listdir(app.config['UPLOAD_FOLDER']))
+    return render_template('index.html')
 if __name__ == "__main__":
     app.run(host=os.getenv("IP", "0.0.0.0"),port=int(os.getenv("PORT", 8080)),debug=True)
