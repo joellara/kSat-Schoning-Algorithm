@@ -68,7 +68,9 @@ li{
      font-size: 12px;
 
 }
-
+input{
+    margin:10px;
+}
 .myButton {
 	-moz-box-shadow:inset 0px 1px 3px 0px #91b8b3;
 	-webkit-box-shadow:inset 0px 1px 3px 0px #91b8b3;

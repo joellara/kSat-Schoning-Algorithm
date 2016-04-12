@@ -39,26 +39,26 @@
         <h2 class="indexTitle" style="font-size:18px">El input debe tener el siguiente formato:</h2>
         <h3 class="indexLabel" style="font-size:15px;margin-bottom:0px">(nAoB)a(BonC)a(AoC)</h3>
         <h4 class="indexLabel" style="font-size:15px;margin-bottom:0px">Donde:</h4>
-         <ul style="margin-left:280px">
+         <div style="margin: 0 10%;max-width: 30%;float: left;">
+         <ul>
             <li>A y B son las varialbes (se pueden incluir mas variables ademas de estas)</li>    
             <li>El prefijo “n” quiere decir negado</li>  
             <li>La letra “o” minúscula hace referencia a la instrucción OR, mientras que la “a” minúscula es un AND.</li>  
             <li>El input no debe tener espacios,  las clausulas están emcapsuladas entre paréntesis, divididas por “a” (ANDS).</li>  
             <li>Dentro de la clausula, las variables tiene que estar separadas por “o” (OR).</li>  
         </ul>
+        </div>
+        <div style="margin: 0 10%;max-width: 30%;float: left;">
         <br>
         <form action="getClause" method="POST">
-            <p>
                 <input class="btn myButton" id="generate" type=submit value="Generar instancia aleatoria">
-                <br>
                 <br>
                 <input class="btn myButton" type=submit value="Obtener resultado de instancia aleatoria">
                 <br>
-                <br>
                  <label class="labelIndex">Clausulas:</label><input type="text" name="clauses" id="result">
         </form>
-        <label class="labelIndex">Numero de clausulas:</label><input type="number" name="num_clauses" value="10" >
-        <label class="labelIndex">K-Sat???:</label><input type="number" name="sat" value="3" > 
+        <div><label class="labelIndex">Numero de clausulas:</label><input type="number" name="num_clauses" value="10" ></div>
+        <div><label class="labelIndex">K-Sat???:</label><input type="number" name="sat" value="3" > </<div>
          </center>
     </div>
     </body>
