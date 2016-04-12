@@ -3,11 +3,31 @@
     
 <head>
     <title>Upload new File</title>
+    <link rel="stylesheet" type="text/css" href="/joellara/algorithms2project/static/styles.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+    <script type="text/javascript">
+      $(function() {
+        var submit_form = function(e) {
+          $.getJSON($SCRIPT_ROOT + '/_getclause', {
+            clauses: $('input[name="num_clauses"]').val(),
+            sat: $('input[name="sat"]').val()
+          }, function(data) {
+            $('#result').val(data.result);
+            $('input[name=num_clauses]').focus().select();
+          });
+          return false;
+        };
+        $('input#generate').bind('click', submit_form);
+      });
+    </script>
 </head>
 <body>
     <center>
-        <h1 style="color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 50px; font-weight: bold; letter-spacing: -1px; line-height: 1;">K-Sat Solution Program</h1>
-        <label style="color: #111; font-family: 'Open Sans', sans-serif; font-size: 20px; font-weight: 300; line-height: 32px; margin: 0 0 72px; text-align: center">Upload a .txt file to find a solution for the problem</label>
+        <h1 class="indexTitle">K-Sat Solution Program</h1>
+        <label class="indexLabel">Upload a .txt file to find a solution for the problem</label>
         <form action="" method=post enctype=multipart/form-data>
             <p>
                 <input  class="btn"type=file name=file accept=".txt">
@@ -15,16 +35,29 @@
         </form>
         <br>
     </center>
-    <h2>El input debe tener el siguiente formato:</h2>
-    <h3>(nAoB)a(BonC)a(AoC)</h3>
-    <h4>Donde:</h4>
-     <ul>
-        <li>A y B son las varialbes</li>    
-        <li>El prefijo “n” quiere decir negado</li>  
-        <li>La letra “o” minúscula hace referencia a la instrucción OR, mientras que la “a” minúscula es un AND.</li>  
-        <li>El input no debe tener espacios,  las clausulas están emcapsuladas entre paréntesis, divididas por “a” (ANDS).</li>  
-        <li>Dentro de la clausula, las variables tiene que estar separadas por “o” (OR).</li>  
-    </ul>
+    <div>
+        <h2>El input debe tener el siguiente formato:</h2>
+        <h3>(nAoB)a(BonC)a(AoC)</h3>
+        <h4>Donde:</h4>
+         <ul>
+            <li>A y B son las varialbes (se pueden incluir mas variables ademas de estas)</li>    
+            <li>El prefijo “n” quiere decir negado</li>  
+            <li>La letra “o” minúscula hace referencia a la instrucción OR, mientras que la “a” minúscula es un AND.</li>  
+            <li>El input no debe tener espacios,  las clausulas están emcapsuladas entre paréntesis, divididas por “a” (ANDS).</li>  
+            <li>Dentro de la clausula, las variables tiene que estar separadas por “o” (OR).</li>  
+        </ul>
+        <br>
+        <form action="getClause" method="POST">
+            <p>
+                <input class="btn" id="generate" type=submit value="Generar instancia aleatoria">
+                <br>
+                <input class="btn" type=submit value="Obtener resultado de instancia aleatoria">
+                <br>
+                Clausulas: <input type="text" name="clauses" id="result">
+        </form>
+        Numero de clausulas:<input type="number" name="num_clauses">
+        K-Sat???:<input type="number" name="sat"> 
+    </div>
     </body>
 </html>
     
