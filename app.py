@@ -23,7 +23,7 @@ def solveClause():
     (values, count) = Schoning.schoning_algo(linestring)
     if not values:
         return render_template('error.html',error=count)
-    return render_template('reading.html',values=values,count=count,string=linestring)
+    return render_template('reading.html',values=values,count=count,clause=linestring)
     
 @app.route("/", methods=['GET', 'POST'])
 def index():

@@ -3,7 +3,7 @@
     
 <head>
     <title>Upload new File</title>
-    <link rel="stylesheet" type="text/css" href="/joellara/algorithms2project/static/styles.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script type="text/javascript">
         var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
@@ -30,16 +30,16 @@
         <label class="indexLabel">Upload a .txt file to find a solution for the problem</label>
         <form action="" method=post enctype=multipart/form-data>
             <p>
-                <input  class="btn"type=file name=file accept=".txt">
-                <input class="btn"type=submit value=Upload>
+                <input  class="btn myButton"type=file name=file accept=".txt">
+                <input class="btn myButton"type=submit value=Upload>
         </form>
         <br>
-    </center>
+   
     <div>
-        <h2>El input debe tener el siguiente formato:</h2>
-        <h3>(nAoB)a(BonC)a(AoC)</h3>
-        <h4>Donde:</h4>
-         <ul>
+        <h2 class="indexTitle" style="font-size:18px">El input debe tener el siguiente formato:</h2>
+        <h3 class="indexLabel" style="font-size:15px;margin-bottom:0px">(nAoB)a(BonC)a(AoC)</h3>
+        <h4 class="indexLabel" style="font-size:15px;margin-bottom:0px">Donde:</h4>
+         <ul style="margin-left:280px">
             <li>A y B son las varialbes (se pueden incluir mas variables ademas de estas)</li>    
             <li>El prefijo “n” quiere decir negado</li>  
             <li>La letra “o” minúscula hace referencia a la instrucción OR, mientras que la “a” minúscula es un AND.</li>  
@@ -49,14 +49,17 @@
         <br>
         <form action="getClause" method="POST">
             <p>
-                <input class="btn" id="generate" type=submit value="Generar instancia aleatoria">
+                <input class="btn myButton" id="generate" type=submit value="Generar instancia aleatoria">
                 <br>
-                <input class="btn" type=submit value="Obtener resultado de instancia aleatoria">
                 <br>
-                Clausulas: <input type="text" name="clauses" id="result">
+                <input class="btn myButton" type=submit value="Obtener resultado de instancia aleatoria">
+                <br>
+                <br>
+                 <label class="labelIndex">Clausulas:</label><input type="text" name="clauses" id="result">
         </form>
-        Numero de clausulas:<input type="number" name="num_clauses">
-        K-Sat???:<input type="number" name="sat"> 
+        <label class="labelIndex">Numero de clausulas:</label><input type="number" name="num_clauses" value="10" >
+        <label class="labelIndex">K-Sat???:</label><input type="number" name="sat" value="3" > 
+         </center>
     </div>
     </body>
 </html>
