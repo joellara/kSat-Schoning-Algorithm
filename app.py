@@ -23,4 +23,4 @@ def index():
             return render_template('reading.html',values=values,count=count,string=linestring)
     return render_template('index.html')
 if __name__ == "__main__":
-    app.run(host=os.getenv("IP", "0.0.0.0"),port=int(os.getenv("PORT", 8080)),debug=True)
+    app.run(host=os.getenv("IP", "0.0.0.0"),port=int(os.getenv("PORT", 8081)),debug=True)
